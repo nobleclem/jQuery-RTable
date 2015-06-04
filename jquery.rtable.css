@@ -22,11 +22,15 @@
 
 .rtable.active tr.rtable-row > td {
     position: relative;
+    padding-left: 50%;
 }
 
 .rtable.active tr.rtable-row > td:before {
-    display: inline-block;
+    display: block;
+    float: left;
     width: 45%;
+    min-height: 1px;
+    margin-left: -50%;
     margin-right: 2.5%;
     padding-right: 2.5%;
     left: 0;
