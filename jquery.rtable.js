@@ -6,22 +6,24 @@
  * @Website: springstubbe.us
  * @Source: https://github.com/nobleclem/jQuery-RTable
  * 
- * @Credits: http://elvery.net/demo/responsive-tables/
- * 
  * Usage:
  *     $('table').rtable();
+ *     $('table').rtable({
+ *         style: 'notable'
+ *     });
  * 
  **/
 (function($){
     $.fn.rtable = function( options ){
         defaults = {
+            style: 'notable', // responsive layout style ( notable, flipscroll )
         }
         options = $.extend( defaults, options );
 
         var elements = this;
 
         elements.each(function(){
-            $(this).addClass( 'rtable' );
+            var table = $(this);
 
             var headers  = null;
             var isOddRow = true;
@@ -29,25 +31,46 @@
             /* LOCATE HEADERS
              * @NOTE: order matters for selectors
              */
-            $(this).find('thead > tr, tbody > tr, > tr').each(function(){
-                // first item should be headers
-                if( headers == null ) {
+            if( !table.find('> thead').length ) {
+                table.find('> tbody > tr:first-child, > tr:first-child').each(function(){
                     headers = $(this).find('> th');
-                    $(this).addClass( 'rtable-headers' );
 
-                    // skip processing for this element
+                    if( headers.length ) {
+                        table.prepend('<thead></thead>');
+                        $(this).appendTo( table.find('> thead') );
+
+                        return false;
+                    }
+                });
+
+                // no headers found this plugin can't be used
+                if( !headers.length ) {
                     return;
                 }
+            }
 
+            // enable rtable for this element
+            table.addClass( 'rtable '+ options.style );
+            headers = table.find('> thead > tr > th');
+
+            // LOCATE TABLE BODY (create if needed)
+            if( !table.find('> tbody').length ) {
+                table.find('> tr').wrapAll('<tbody></tbody>');
+            }
+
+            // everything else is data
+            table.find('> tbody > tr').each(function(){
                 // add row attributes
                 $(this).addClass(
-                    'rtable-row ' + ( isOddRow ? 'rtable-odd' : 'rtable-even' )
+                    ( isOddRow ? 'rtable-odd' : 'rtable-even' )
                 );
 
                 // add cell attributes
-                $(this).find('> td').each(function( idx ){
-                    $(this).attr( 'data-title', headers.eq( idx ).text() );
-                });
+                if( options.style == 'notable' ) {
+                    $(this).find('> td').each(function( idx ){
+                        $(this).attr( 'data-title', headers.eq( idx ).text() );
+                    });
+                }
 
                 isOddRow = isOddRow ? false : true;
             });
