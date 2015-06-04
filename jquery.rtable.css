@@ -1,0 +1,36 @@
+.rtable.active,
+.rtable.active thead,
+.rtable.active tbody,
+.rtable.active th,
+.rtable.active td,
+.rtable.active tr {
+    display: block;
+}
+
+.rtable.active tr.rtable-row {
+    border-bottom: 1px solid;
+}
+
+.rtable.active tr.rtable-headers {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.rtable.active tr.rtable-row > td {
+    position: relative;
+}
+
+.rtable.active tr.rtable-row > td:before {
+    display: inline-block;
+    width: 45%;
+    margin-right: 2.5%;
+    padding-right: 2.5%;
+    left: 0;
+    font-weight: bold;
+    content: attr(data-title);
+    text-align: right;
+}
