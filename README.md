@@ -7,3 +7,8 @@ Makes Tables Responsive
 ```
 $('table').rtable();
 ```
+```
+$('table').rtable({
+    style: 'flipscroll'
+});
+```
