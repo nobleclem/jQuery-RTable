@@ -1,3 +1,11 @@
+.rtable {
+    max-width: 100%;
+}
+
+.rtable > tbody > tr > td {
+    white-space: nowrap;
+}
+
 .rtable.active,
 .rtable.active thead,
 .rtable.active tbody,
@@ -7,11 +15,9 @@
     display: block;
 }
 
-.rtable.active tr.rtable-row {
-    border-bottom: 1px solid;
-}
 
-.rtable.active tr.rtable-headers {
+/* NOTABLE LAYOUT */
+.rtable.notable.active > thead {
     position: absolute !important;
     height: 1px;
     width: 1px;
@@ -19,13 +25,16 @@
     clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
 }
+.rtable.notable.active > tbody > tr {
+    border-bottom: 1px solid;
+}
 
-.rtable.active tr.rtable-row > td {
+.rtable.notable.active > tbody > tr > td {
     position: relative;
     padding-left: 50%;
 }
 
-.rtable.active tr.rtable-row > td:before {
+.rtable.notable.active > tbody > tr > td:before {
     display: block;
     float: left;
     width: 45%;
@@ -37,4 +46,31 @@
     font-weight: bold;
     content: attr(data-title);
     text-align: right;
+}
+
+
+
+/* FLIPSCROLL LAYOUT */
+.rtable.flipscroll.active {
+    position: relative;
+    width: 100%;
+}
+.rtable.flipscroll.active > thead {
+    float: left;
+    border-right: 1px solid;
+}
+.rtable.flipscroll.active > thead > tr {
+    padding-right: 5px;
+}
+.rtable.flipscroll.active > tbody {
+    position: relative;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.rtable.flipscroll.active > tbody > tr {
+    display: inline-block;
+    padding: 0 5px;
+}
+.rtable.flipscroll.active > tbody > tr + tr {
+    border-left: 1px solid;
 }
