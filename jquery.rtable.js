@@ -5,6 +5,7 @@
  * @Contact: @JediNobleclem
  * @Website: springstubbe.us
  * @Source: https://github.com/nobleclem/jQuery-RTable
+ * @Credits: http://elvery.net/demo/responsive-tables/
  * 
  * Usage:
  *     $('table').rtable();
