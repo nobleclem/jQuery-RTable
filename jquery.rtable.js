@@ -5,7 +5,6 @@
  * @Contact: @JediNobleclem
  * @Website: springstubbe.us
  * @Source: https://github.com/nobleclem/jQuery-RTable
- * @Credits: http://elvery.net/demo/responsive-tables/
  * 
  * Usage:
  *     $('table').rtable();
@@ -79,14 +78,21 @@
 
         // activate/deactivate responsivle table versions
         $(window).resize(function(){
-            $('table.rtable').each(function(){
+            elements.each(function(){
+                if( !$(this).hasClass( 'rtable' ) ) {
+                    return;
+                }
+
                 // remove class to determine natural flow table width
-                $(this).removeClass('active');
+                $(this).removeClass('active')
+                $(this).css( 'max-width', 'inherit' );
 
                 // TABLE wider than PARENT?  Go Responsive
                 if( $(this).width() > $(this).parent().width() ) {
                     $(this).addClass('active');
                 }
+
+                $(this).css( 'max-width', '' );
             });
         }).trigger('resize');
     };
