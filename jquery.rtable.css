@@ -31,7 +31,8 @@
 
 .rtable.notable.active > tbody > tr > td {
     position: relative;
-    padding-left: 50%;
+    padding-left: 50% !important;
+    white-space: normal;
 }
 
 .rtable.notable.active > tbody > tr > td:before {
