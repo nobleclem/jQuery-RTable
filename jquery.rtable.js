@@ -9,14 +9,16 @@
  * Usage:
  *     $('table').rtable();
  *     $('table').rtable({
- *         style: 'notable'
+ *         style: 'notable',
+ *         sacrifice: [ 1, 8 ]
  *     });
  * 
  **/
 (function($){
     $.fn.rtable = function( options ){
         defaults = {
-            style: 'notable', // responsive layout style ( notable, flipscroll )
+            style    : 'notable', // responsive layout style ( notable, flipscroll )
+            sacrifice: [], // list of columns to sacrifice before going responsive
         }
         options = $.extend( defaults, options );
 
@@ -83,12 +85,36 @@
                     return;
                 }
 
-                // remove class to determine natural flow table width
+                // reset to normal flow to calc natural table flow & width
                 $(this).removeClass('active')
                 $(this).css( 'max-width', 'inherit' );
+                for( i=0; i < options.sacrifice.length; i++ ) {
+                    $(this).find('> thead > tr, > tbody > tr').each(function(){
+                        $(this).find('> th, > td').css('display', '');
+                    });
+                };
 
-                // TABLE wider than PARENT?  Go Responsive
+                // hide sacrificial columns
+                for( i=0; i < options.sacrifice.length; i++ ) { 
+                    if( $(this).width() > $(this).parent().width() ) {
+                        $(this).find('> thead > tr, > tbody > tr').each(function(){
+                            $(this).find('> th, > td').eq( options.sacrifice[ i ] ).hide();
+                        });
+                    }
+                }
+                else {
+                    break;
+                }
+
+                // TABLE still wider than PARENT?  Go Responsive
                 if( $(this).width() > $(this).parent().width() ) {
+                    // active so show all data
+                    for( i=0; i < options.sacrifice.length; i++ ) {
+                        $(this).find('> thead > tr, > tbody > tr').each(function(){
+                            $(this).find('> th, > td').css('display', '');
+                        });
+                    };
+
                     $(this).addClass('active');
                 }
 
