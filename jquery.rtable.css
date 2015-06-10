@@ -2,6 +2,7 @@
     max-width: 100%;
 }
 
+.rtable > thead > tr > th,
 .rtable > tbody > tr > td {
     white-space: nowrap;
 }
@@ -25,13 +26,20 @@
     clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
 }
+
 .rtable.notable.active > tbody > tr {
-    border-bottom: 1px solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.rtable.notable.active > tbody > tr + tr {
+    border-top: 1px solid;
 }
 
 .rtable.notable.active > tbody > tr > td {
     position: relative;
     padding-left: 50% !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     white-space: normal;
 }
 
