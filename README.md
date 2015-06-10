@@ -12,6 +12,7 @@ $('table').rtable();
 ```
 ```
 $('table').rtable({
-    style: 'flipscroll'
+    style: 'flipscroll',
+    sacrifice: [ 1, 8 ]
 });
 ```
