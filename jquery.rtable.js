@@ -102,9 +102,6 @@
                         });
                     }
                 }
-                else {
-                    break;
-                }
 
                 // TABLE still wider than PARENT?  Go Responsive
                 if( $(this).width() > $(this).parent().width() ) {
