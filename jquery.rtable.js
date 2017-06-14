@@ -1,6 +1,6 @@
 /**
  * Set height of a group of elements to the largest size
- * @Version: 1.0
+ * @Version: 1.0.1
  * @Author: Patrick Springstubbe
  * @Contact: @JediNobleclem
  * @Website: springstubbe.us
