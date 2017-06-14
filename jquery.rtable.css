@@ -46,15 +46,18 @@
 .rtable.notable.active > tbody > tr > td:before {
     display: block;
     float: left;
-    width: 45%;
+    width: 95%;
     min-height: 1px;
-    margin-left: -50%;
-    margin-right: 2.5%;
-    padding-right: 2.5%;
+    margin-left: -100%;
     left: 0;
     font-weight: bold;
     content: attr(data-title);
     text-align: right;
+}
+.rtable.notable.active > tbody > tr > td:after {
+    content: ' ';
+    display: table;
+    clear: both;
 }
 
 
