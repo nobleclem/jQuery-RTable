@@ -4,7 +4,7 @@ jQuery RTable
 Makes Tables Responsive
 
 ## Demo
-http://springstubbe.us/projects/demos/jquery-rtable/
+http://springstubbe.us/projects/jquery-rtable/
 
 ## Usage
 ```
